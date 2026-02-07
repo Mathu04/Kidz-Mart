@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KidMart – Family Shopping Dashboard</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+ <link href="img/favi icon.png" rel="icon">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f2f5ff;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      min-height: 100vh;
+      background: linear-gradient(180deg, #6a11cb, #2575fc);
+      color: #fff;
+      
+    }
+
+    .sidebar h4 {
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .sidebar a {
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      border-radius: 12px;
+      margin-bottom: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .sidebar a i {
+      margin-right: 12px;
+      font-size: 1.3rem;
+    }
+
+    .sidebar a:hover,
+    .sidebar a.active {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateX(5px);
+    }
+
+    /* Main Content */
+    .content {
+      padding: 30px;
+    }
+
+    .card {
+      border: none;
+      border-radius: 20px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+    }
+
+    .stat-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: #fff;
+    }
+
+    .bg-blue { background: #4f8cff; }
+    .bg-pink { background: #ff6f91; }
+    .bg-green { background: #2ec4b6; }
+    .bg-purple { background: #9b5de5; }
+    .bg-orange { background: #ff9f1c; }
+
+    .section-title {
+      font-weight: 600;
+    }
+
+    /* Product Card */
+    .product-card img {
+      border-radius: 15px;
+    }
+
+    .badge-age {
+      background: #ffd166;
+      color: #000;
+      font-size: 0.75rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .sidebar {
+        min-height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container-fluid">
+  <div class="row">
+
+    <!-- Sidebar -->
+    <nav class="col-lg-2 col-md-3 sidebar p-4">
+        <div class="sidebar-logo text-center mb-4">
+    <a href="index.html" class="text-decoration-none">
+      <h5 class="m-0 logo-text">
+        <span class="logo-badge">Kidz</span>Mart
+      </h5>
+    </a>
+  </div>
+      <a href="#" class="active" onclick="showSection('dashboard')"><i class="bi bi-speedometer2"></i> Dashboard</a>
+      <a href="#" onclick="showSection('wishlist')"><i class="bi bi-heart"></i> Wishlists</a>
+      <a href="#" onclick="showSection('recommendations')"><i class="bi bi-stars"></i> Happy Picks</a>
+      <a href="#" onclick="showSection('subscriptions')"><i class="bi bi-box-seam"></i> Subscriptions</a>
+      <a href="#" onclick="showSection('orders')"><i class="bi bi-bag-check"></i> Orders</a>
+      <a href="#" onclick="showSection('profile')"><i class="bi bi-people"></i> Family Profile</a>
+      <a href="#" onclick="showSection('settings')"><i class="bi bi-gear"></i> Settings</a>
+    </nav>
+
+    <!-- Main -->
+    <main class="col-lg-10 col-md-9 content">
+
+      <!-- DASHBOARD -->
+      <div id="dashboard" class="section">
+        <h3 class="mb-1">Welcome Back 👋</h3>
+        <p class="text-muted mb-4">Personalized shopping experience for your family</p>
+
+        <div class="row g-4">
+          <div class="col-xl-3 col-md-6">
+            <div class="card p-3">
+              <div class="d-flex align-items-center">
+                <div class="stat-icon bg-blue"><i class="bi bi-people"></i></div>
+                <div class="ms-3">
+                  <h6>Kids Profiles</h6>
+                  <h4>3</h4>
+                  <small class="text-muted">Ages 3, 6, 9, upto 12</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-md-6">
+            <div class="card p-3">
+              <div class="d-flex align-items-center">
+                <div class="stat-icon bg-pink"><i class="bi bi-heart"></i></div>
+                <div class="ms-3">
+                  <h6>Wishlist Items</h6>
+                  <h4>12</h4>
+                  <small class="text-muted">4 high priority Products</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-md-6">
+            <div class="card p-3">
+              <div class="d-flex align-items-center">
+                <div class="stat-icon bg-green"><i class="bi bi-box"></i></div>
+                <div class="ms-3">
+                  <h6>Subscriptions</h6>
+                  <h4>2 Active</h4>
+                  <small class="text-muted">Next delivery: 5 days</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-md-6">
+            <div class="card p-3">
+              <div class="d-flex align-items-center">
+                <div class="stat-icon bg-purple"><i class="bi bi-bag-check"></i></div>
+                <div class="ms-3">
+                  <h6>Total Orders</h6>
+                  <h4>24</h4>
+                  <small class="text-muted">Last order: Yesterday</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-4 mt-2">
+          <div class="col-lg-8">
+            <div class="card p-4">
+              <h5 class=" mb-3">Recommended For Today</h5>
+              <div class="row g-3">
+                <div class="col-md-4">
+                  <div class="product-card">
+                    <img src="img/shop8.avif" class="img-fluid">
+                    <h6 class="mt-2">Carton Toy</h6>
+                    <span class="badge badge-age">Age 6+</span>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="product-card">
+                    <img src="img/shop10.avif" class="img-fluid">
+                    <h6 class="mt-2">Dog Toy </h6>
+                    <span class="badge badge-age">Age 4+</span>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="product-card">
+                    <img src="img/shop9.avif" class="img-fluid">
+                    <h6 class="mt-2">Teddy Bear</h6>
+                    <span class="badge badge-age">Age 3+</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="card p-4">
+              <h5 class=" mb-3">Upcoming Deliveries</h5>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">🎁 Toy Box – Feb 10</li>
+                <li class="list-group-item">📘 Book Club – Feb 18</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WISHLIST -->
+     <div id="wishlist" class="section d-none">
+  <h4 class="mb-2">Wishlists</h4>
+  <p class="text-muted mb-4">
+    Save favorite toys for birthdays, rewards, and special moments.
+  </p>
+
+  <div class="row">
+    <!-- Wishlist Card -->
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-4">
+      <div class="card wishlist-card h-100">
+        <div class="position-relative">
+          <img src="img/toy1.avif" class="card-img-top" alt="Wooden Theater Toy">
+
+          <!-- Remove -->
+          <button class="btn btn-sm btn-danger wishlist-remove">
+            <i class="bi bi-heart"></i>
+          </button>
+
+          <!-- Age badge -->
+          <span class="badge age-badge">Age 6+</span>
+        </div>
+
+        <div class="card-body text-center">
+          <h6 class="card-title mb-1">Wooden Theater</h6>
+
+          <small class="text-muted d-block mb-2">
+            Creativity • Role Play
+          </small>
+
+          <p class="price mb-3">$150</p>
+
+          <div class="d-grid gap-2">
+            <button class="btn btn-primary btn-sm">
+              <i class="bi bi-cart-plus"></i> Add to Cart
+            </button>
+            <button class="btn btn-outline-secondary btn-sm">
+              View Details
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Repeat Card -->
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-4">
+      <div class="card wishlist-card h-100">
+        <div class="position-relative">
+          <img src="img/toy2.avif" class="card-img-top" alt="Handy Toy">
+          <button class="btn btn-sm btn-danger wishlist-remove">
+            <i class="bi bi-heart"></i>
+          </button>
+          <span class="badge age-badge">Age 6+</span>
+        </div>
+        <div class="card-body text-center">
+          <h6 class="card-title mb-1">Handy Toy</h6>
+          <small class="text-muted d-block mb-2">Motor Skills</small>
+          <p class="price mb-3">$150</p>
+           <div class="d-grid gap-2">
+            <button class="btn btn-primary btn-sm">
+              <i class="bi bi-cart-plus"></i> Add to Cart
+            </button>
+            <button class="btn btn-outline-secondary btn-sm">
+              View Details
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-4">
+      <div class="card wishlist-card h-100">
+        <div class="position-relative">
+          <img src="img/toy4.avif" class="card-img-top" alt="Handy Toy">
+          <button class="btn btn-sm btn-danger wishlist-remove">
+            <i class="bi bi-heart"></i>
+          </button>
+          <span class="badge age-badge">Age 6+</span>
+        </div>
+        <div class="card-body text-center">
+          <h6 class="card-title mb-1">Handy Toy</h6>
+          <small class="text-muted d-block mb-2">Motor Skills</small>
+          <p class="price mb-3">$150</p>
+           <div class="d-grid gap-2">
+            <button class="btn btn-primary btn-sm">
+              <i class="bi bi-cart-plus"></i> Add to Cart
+            </button>
+            <button class="btn btn-outline-secondary btn-sm">
+              View Details
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add more cards same way -->
+  </div>
+</div>
+
+
+      <!-- RECOMMENDATIONS -->
+     <div id="recommendations" class="section d-none">
+  <h4 class="mb-1">Age-Smart Picks</h4>
+  <p class="text-muted mb-4">
+    Carefully selected toys based on your child’s age, interests, and safety standards.
+  </p>
+
+  <!-- Age Filter Tabs -->
+  <ul class="nav nav-pills mb-4" id="ageTabs">
+    <li class="nav-item">
+      <button class="nav-link active">Age 3–5</button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link">Age 6–8</button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link">Age 9–12</button>
+    </li>
+  </ul>
+
+  <!-- Recommendation Grid -->
+  <div class="row">
+    <!-- Card -->
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-4">
+      <div class="card recommend-card h-100">
+        <div class="position-relative">
+          <img src="img/shop8.avif" class="card-img-top" alt="Carton Toy">
+
+          <span class="badge age-badge">Age 6+</span>
+          <span class="badge skill-badge">Creativity</span>
+
+          <button class="btn wishlist-fav">
+            <i class="bi bi-heart-fill" style="color: red;"></i>
+          </button>
+        </div>
+
+        <div class="card-body text-center">
+          <h6 class="card-title mb-1">Carton Toy</h6>
+
+          <small class="text-muted d-block mb-2">
+            Improves imagination and problem-solving skills
+          </small>
+
+          <div class="d-flex justify-content-center gap-2 mb-3">
+            <span class="badge bg-light text-dark">Eco-Safe</span>
+            <span class="badge bg-light text-dark">DIY</span>
+          </div>
+
+          <button class="btn btn-primary btn-sm w-100">
+            <i class="bi bi-cart-plus"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Duplicate cards as needed -->
+  </div>
+</div>
+
+
+      <!-- SUBSCRIPTIONS -->
+     <div id="subscriptions" class="section d-none">
+  <h4 class="mb-1">Subscriptions</h4>
+  <p class="text-muted mb-4">
+    Manage recurring deliveries for your child’s favorites – toys, clothes, accessories, and shoes.
+  </p>
+
+  <div class="row">
+    <!-- Toy Subscription -->
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-4">
+      <div class="card subscription-card h-100">
+        <div class="card-body text-center">
+          <div class="sub-icon bg-blue mb-3">
+            <i class="bi bi-controller"></i>
+          </div>
+
+          <h6 class="mb-1">Toy Box</h6>
+          <small class="text-muted d-block mb-3">
+            Monthly fun & learning toys
+          </small>
+
+          <ul class="list-unstyled small text-muted mb-3">
+            <li>✔ Age-based toys</li>
+            <li>✔ Safe & eco-friendly</li>
+            <li>✔ Cancel anytime</li>
+          </ul>
+
+          <span class="badge bg-success mb-3">Active</span>
+
+          <div class="d-grid gap-2">
+            <button class="btn btn-primary btn-sm">Manage</button>
+            <button class="btn btn-outline-primary btn-sm">Pause</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Clothes Subscription -->
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-4">
+      <div class="card subscription-card h-100">
+        <div class="card-body text-center">
+          <div class="sub-icon bg-pink mb-3">
+            <i class="bi bi-basket"></i>
+          </div>
+
+          <h6 class="mb-1">Kids Clothing</h6>
+          <small class="text-muted d-block mb-3">
+            Seasonal outfits & daily wear
+          </small>
+
+          <ul class="list-unstyled small text-muted mb-3">
+            <li>✔ Size-based delivery</li>
+            <li>✔ Soft fabrics</li>
+            <li>✔ Style curated</li>
+          </ul>
+
+          <span class="badge bg-warning text-dark mb-3">Paused</span>
+
+          <button class="btn btn-primary btn-sm w-100">Resume</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Accessories Subscription -->
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-4">
+      <div class="card subscription-card h-100">
+        <div class="card-body text-center">
+          <div class="sub-icon bg-purple mb-3">
+            <i class="bi bi-bag-heart"></i>
+          </div>
+
+          <h6 class="mb-1">Accessories</h6> 
+          <small class="text-muted d-block mb-3">
+            Bags, bottles & essentials
+          </small>
+
+          <ul class="list-unstyled small text-muted mb-3">
+            <li>✔ School-ready items</li>
+            <li>✔ Premium quality</li>
+            <li>✔ Monthly refresh</li>
+          </ul>
+
+          <span class="badge bg-pink mb-3">Inactive</span>
+
+          <button class="btn btn-outline-primary btn-sm w-100">
+            Subscribe
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Shoes Subscription -->
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-4">
+      <div class="card subscription-card h-100">
+        <div class="card-body text-center">
+          <div class="sub-icon bg-orange mb-3">
+            <i class="bi bi-wallet"></i>
+          </div>
+
+          <h6 class="mb-1">Kids Shoes</h6>
+          <small class="text-muted d-block mb-3">
+            Growing-size footwear plans
+          </small>
+
+          <ul class="list-unstyled small text-muted mb-3">
+            <li>✔ Size tracking</li>
+            <li>✔ Comfort focused</li>
+            <li>✔ Every 3 months</li>
+          </ul>
+
+          <span class="badge bg-success mb-3">Active</span>
+
+          <button class="btn btn-primary btn-sm w-100">Manage</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+      <!-- ORDERS -->
+      <div id="orders" class="section d-none">
+  <h4 class="mb-1">Order History</h4>
+  <p class="text-muted mb-4">
+    Track shipments, reorder favorite items, and download invoices.
+  </p>
+
+  <!-- Orders List -->
+  <div class="card order-card mb-4">
+    <div class="card-body">
+      <div class="row align-items-center">
+
+        <!-- Order Info -->
+        <div class="col-lg-3 col-md-6 mb-3 mb-lg-0">
+          <h6 class="mb-1">Order #KM10234</h6>
+          <small class="text-muted">Placed on Feb 2, 2026</small>
+        </div>
+
+        <!-- Items -->
+        <div class="col-lg-3 col-md-6 mb-3 mb-lg-0">
+          <div class="d-flex align-items-center">
+            <img src="img/toy1.avif" class="order-img me-2">
+            <div>
+              <small class="d-block">Wooden Theater</small>
+              <small class="text-muted">+2 more items</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Status -->
+        <div class="col-lg-2 col-md-4 mb-3 mb-lg-0">
+          <span class="badge bg-success">Delivered</span>
+          <small class="d-block text-muted mt-1">Feb 5, 2026</small>
+        </div>
+
+        <!-- Amount -->
+        <div class="col-lg-2 col-md-4 mb-3 mb-lg-0">
+          <strong>$320</strong>
+          <small class="d-block text-muted">Paid</small>
+        </div>
+
+        <!-- Actions -->
+        <div class="col-lg-2 col-md-4 text-lg-end">
+          <div class="btn-group">
+            <button class="btn btn-outline-primary btn-sm">
+              <i class="bi bi-arrow-repeat"></i> Reorder
+            </button>
+            <button class="btn btn-danger btn-sm">
+              <i class="bi bi-download"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Order -->
+  <div class="card order-card mb-4">
+    <div class="card-body">
+      <div class="row align-items-center">
+
+        <div class="col-lg-3 col-md-6 mb-3 mb-lg-0">
+          <h6 class="mb-1">Order #KM10211</h6>
+          <small class="text-muted">Placed on Jan 20, 2026</small>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-3 mb-lg-0">
+          <div class="d-flex align-items-center">
+            <img src="img/shoe1.avif" class="order-img me-2">
+            <div>
+              <small class="d-block">Kids Shoes</small>
+              <small class="text-muted">+1 more item</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-4 mb-3 mb-lg-0">
+          <span class="badge bg-warning text-dark">In Transit</span>
+          <small class="d-block text-muted mt-1">ETA Feb 10</small>
+        </div>
+
+        <div class="col-lg-2 col-md-4 mb-3 mb-lg-0">
+          <strong>$180</strong>
+          <small class="d-block text-muted">Paid</small>
+        </div>
+
+        <div class="col-lg-2 col-md-4 text-lg-end">
+          <div class="btn-group">
+            <button class="btn btn-outline-primary btn-sm">
+              Track
+            </button>
+            <button class="btn btn-danger btn-sm">
+              <i class="bi bi-download"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+      <!-- PROFILE -->
+    <div id="profile" class="section d-none">
+  <h4 class="mb-1">Family Profile</h4>
+  <p class="text-muted mb-4">
+    Manage kids’ profiles, preferences, allergies, and shopping settings.
+  </p>
+
+  <div class="row g-4">
+
+    <!-- Parent Info -->
+    <div class="col-xl-4 col-lg-5 col-md-12">
+      <div class="card profile-card h-100">
+        <div class="card-body text-center">
+         <img 
+  src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=200&q=80" 
+  class="profile-avatar mb-3" 
+  alt="Parent Avatar">
+
+
+          <h6 class="mb-1">Parent Account</h6>
+          <small class="text-muted d-block mb-3">
+            Primary account holder
+          </small>
+
+          <ul class="list-unstyled small text-muted text-start mb-3">
+            <li><i class="bi bi-envelope me-2"></i> parent@email.com</li>
+            <li><i class="bi bi-telephone me-2"></i> +1 234 567 890</li>
+            <li><i class="bi bi-geo-alt me-2"></i> Home Address</li>
+          </ul>
+
+          <button class="btn btn-outline-primary btn-sm w-100">
+            Edit Parent Details
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kids Profiles -->
+    <div class="col-xl-8 col-lg-7 col-md-12">
+      <div class="card profile-card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h6 class="mb-0">Kids Profiles</h6>
+            <button class="btn btn-primary btn-sm">
+              <i class="bi bi-plus-circle"></i> Add Child
+            </button>
+          </div>
+
+          <div class="row g-3">
+
+            <!-- Kid Card -->
+            <div class="col-md-6">
+              <div class="kid-card">
+                <div class="d-flex align-items-center">
+                <img 
+  src="https://ui-avatars.com/api/?name=Emma&background=f472b6&color=fff&size=96" 
+  class="kid-avatar-sm me-2"
+  alt="Emma">
+
+
+                  <div>
+                    <h6 class="mb-0">Emma</h6>
+                    <small class="text-muted">Age 6 • Girl</small>
+                  </div>
+                </div>
+
+                <div class="mt-3 small">
+                  <p class="mb-1"><strong>Interests:</strong> Art, Dolls</p>
+                  <p class="mb-1"><strong>Allergies:</strong> None</p>
+                  <p class="mb-1"><strong>Shoe Size:</strong> 12</p>
+                </div>
+
+                <div class="d-flex gap-2 mt-3">
+                  <button class="btn btn-primary btn-sm w-100">
+                    Edit
+                  </button>
+                  <button class="btn btn-outline-primary btn-sm w-100">
+                    View Picks
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Kid Card -->
+            <div class="col-md-6">
+              <div class="kid-card">
+                <div class="d-flex align-items-center">
+                <img 
+  src="https://ui-avatars.com/api/?name=Liam&background=60a5fa&color=fff&size=96" 
+  class="kid-avatar-sm me-2"
+  alt="Liam">
+
+                  <div>
+                    <h6 class="mb-0">Liam</h6>
+                    <small class="text-muted">Age 9 • Boy</small>
+                  </div>
+                </div>
+
+                <div class="mt-3 small">
+                  <p class="mb-1"><strong>Interests:</strong> STEM, Cars</p>
+                  <p class="mb-1"><strong>Allergies:</strong> Nuts</p>
+                  <p class="mb-1"><strong>Shoe Size:</strong> 3</p>
+                </div>
+
+                <div class="d-flex gap-2 mt-3">
+                  <button class="btn btn-primary btn-sm w-100">
+                    Edit
+                  </button>
+                  <button class="btn btn-outline-primary btn-sm w-100">
+                    View Picks
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Preferences -->
+    <div class="col-12">
+      <div class="card profile-card">
+        <div class="card-body">
+          <h6 class="mb-3">Family Shopping Preferences</h6>
+
+          <div class="row g-3">
+            <div class="col-md-4">
+              <div class="pref-box">
+                <i class="bi bi-shield-check"></i>
+                <h6>Safety First</h6>
+                <small>Only certified kid-safe products</small>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="pref-box">
+                <i class="bi bi-recycle"></i>
+                <h6>Eco Friendly</h6>
+                <small>Sustainable & non-toxic items</small>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="pref-box">
+                <i class="bi bi-bell"></i>
+                <h6>Smart Alerts</h6>
+                <small>Delivery & growth reminders</small>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+      <!-- SETTINGS -->
+    <div id="settings" class="section d-none">
+  <h4 class="mb-1">Settings</h4>
+  <p class="text-muted mb-4">
+    Manage notifications, payments, security, and privacy controls.
+  </p>
+
+  <div class="row g-4">
+
+    <!-- Notifications -->
+    <div class="col-xl-3 col-lg-4 col-md-6">
+      <div class="card setting-card h-100">
+        <div class="card-body">
+          <div class="setting-icon bg-primary">
+            <i class="bi bi-bell"></i>
+          </div>
+          <h6>Notifications</h6>
+
+          <div class="form-check form-switch mt-3">
+            <input class="form-check-input" type="checkbox" checked>
+            <label class="form-check-label">Order Updates</label>
+          </div>
+
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" checked>
+            <label class="form-check-label">Age-Based Alerts</label>
+          </div>
+
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox">
+            <label class="form-check-label">Offers & Deals</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Payment -->
+    <div class="col-xl-3 col-lg-4 col-md-6">
+      <div class="card setting-card h-100">
+        <div class="card-body">
+          <div class="setting-icon bg-success">
+            <i class="bi bi-credit-card"></i>
+          </div>
+          <h6>Payments</h6>
+
+          <p class="small text-muted mb-3">
+            Manage cards, wallets, and billing details.
+          </p>
+
+          <button class="btn btn-outline-primary btn-sm w-100">
+            Manage Payment Methods
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Security -->
+    <div class="col-xl-3 col-lg-4 col-md-6">
+      <div class="card setting-card h-100">
+        <div class="card-body">
+          <div class="setting-icon bg-warning">
+            <i class="bi bi-shield-lock"></i>
+          </div>
+          <h6>Security</h6>
+
+          <ul class="list-unstyled small text-muted mb-3">
+            <li>✔ Change Password</li>
+            <li>✔ Two-Factor Authentication</li>
+            <li>✔ Device Management</li>
+          </ul>
+
+          <button class="btn btn-outline-primary btn-sm w-100">
+            Security Settings
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Privacy -->
+    <div class="col-xl-3 col-lg-4 col-md-6">
+      <div class="card setting-card h-100">
+        <div class="card-body">
+          <div class="setting-icon bg-info">
+            <i class="bi bi-lock"></i>
+          </div>
+          <h6>Privacy</h6>
+
+          <p class="small text-muted mb-3">
+            Control data sharing and child privacy.
+          </p>
+
+          <button class="btn btn-outline-primary btn-sm w-100">
+            Privacy Controls
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Preferences -->
+    <div class="col-xl-6 col-lg-6 col-md-12">
+      <div class="card setting-card h-100">
+        <div class="card-body">
+          <h6 class="mb-3">Shopping Preferences</h6>
+
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" checked>
+            <label class="form-check-label">Show only age-appropriate products</label>
+          </div>
+
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" checked>
+            <label class="form-check-label">Eco-friendly products first</label>
+          </div>
+
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox">
+            <label class="form-check-label">Hide out-of-stock items</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Logout -->
+    <div class="col-xl-6 col-lg-6 col-md-12">
+      <div class="card setting-card h-100 logout-card">
+        <div class="card-body text-center">
+          <div class="setting-icon bg-danger">
+            <i class="bi bi-box-arrow-right"></i>
+          </div>
+
+          <h6 class="mb-2">Logout</h6>
+          <p class="small text-muted mb-3">
+            Securely sign out from this account.
+          </p>
+
+          <button class="btn btn-danger w-75">
+            Logout Account
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+    </main>
+  </div>
+</div>
+
+<script>
+  function showSection(id) {
+    document.querySelectorAll('.section').forEach(sec => sec.classList.add('d-none'));
+    document.getElementById(id).classList.remove('d-none');
+    document.querySelectorAll('.sidebar a').forEach(a => a.classList.remove('active'));
+    event.target.closest('a').classList.add('active');
+  }
+</script>
+
+</body>
+</html>
