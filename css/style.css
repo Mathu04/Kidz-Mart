@@ -10293,7 +10293,9 @@ html[data-theme="dark"] .row.bg-secondary a:hover {
 /*banner/*
 
 /* About Us Banner Background */
-
+.category-overlay .nav-link {
+  color: #fff !important;
+}
 .about-banner {
   min-height: 300px;
   background: url("../img/about.png") center center / cover no-repeat;
