@@ -91,7 +91,26 @@
 .logo-mart {
     color: #000000 !important;
 }
+.btn-signin {
+  background: #d19c97;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 16px;
+}
 
+.google-btn {
+  border-radius: 8px;
+  padding: 10px;
+  font-weight: 500;
+}
+
+.form-control-lg {
+  border-radius: 8px;
+}
+
+.signup-link a {
+  font-weight: 600;
+}
 
     </style>
 </head>
@@ -108,40 +127,69 @@
         </h1>
     </a>
 </div>
+<p class="text-muted text-center mb-4">
+  Welcome back! Please login to your account
+</p>
 
-        <p>Welcome back! Please login to your account</p>
+<form>
 
-        <form>
-            <div class="mb-3">
-                <label class="form-label">Email Address</label>
-                <input type="email" class="form-control" placeholder="Enter your email">
-            </div>
+  <div class="mb-3">
+    <label class="form-label">Email Address</label>
+    <input
+      type="email"
+      class="form-control form-control-lg"
+      placeholder="Enter your email"
+      required
+    >
+  </div>
 
-            <div class="mb-3">
-                <label class="form-label">Password</label>
-                <input type="password" class="form-control" placeholder="Enter your password">
-            </div>
+  <div class="mb-3">
+    <label class="form-label">Password</label>
+    <input
+      type="password"
+      class="form-control form-control-lg"
+      placeholder="Enter your password"
+      required
+    >
+  </div>
 
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="remember">
-                    <label class="form-check-label" for="remember">
-                        Remember me
-                    </label>
-                </div>
-                <a href="#" class="text-decoration-none small">Forgot password?</a>
-            </div>
-
-            <button type="submit" class="btn btn-signin w-100 text-white">
-                Sign In
-            </button>
-        </form>
-
-        <div class="signup-link">
-            Already have an account?
-            <a href="register.html">Sign Up</a>
-        </div>
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="remember">
+      <label class="form-check-label" for="remember">
+        Remember me
+      </label>
     </div>
+    <a href="#" class="text-decoration-none small">Forgot password?</a>
+  </div>
+
+  <button type="submit" class="btn btn-signin w-100 text-white mb-3">
+    Sign In
+  </button>
+
+  <!-- DIVIDER -->
+  <div class="text-center my-3 position-relative">
+    <span class="bg-white px-3 text-muted small">or</span>
+    <hr>
+  </div>
+
+  <!-- GOOGLE SIGN IN -->
+  <button type="button" class="btn btn-outline-dark w-100 d-flex align-items-center justify-content-center google-btn">
+    <img
+      src="https://developers.google.com/identity/images/g-logo.png"
+      alt="Google"
+      width="20"
+      class="mr-2"
+    >
+    Continue with Google
+  </button>
+
+</form>
+
+<div class="signup-link text-center mt-4">
+  Don’t have an account?
+  <a href="register.html">Sign Up</a>
+</div>
 
 </body>
 </html>
