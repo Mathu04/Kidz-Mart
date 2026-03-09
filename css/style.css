@@ -10404,3 +10404,36 @@ html[data-theme="dark"] .row.bg-secondary a:hover {
   width: 100%;
   text-align: center;
 }
+/* Fix navbar alignment for tablet screens */
+@media (max-width: 1200px) and (min-width: 992px) {
+
+  .navbar-nav .nav-link{
+    white-space: nowrap;   /* prevent text wrapping */
+    font-size: 14px;       /* slightly smaller text */
+    padding: 8px 10px;
+  }
+
+  .navbar-brand h1{
+    font-size: 22px;
+  }
+
+  .navbar .btn{
+    padding: 6px 10px;
+  }
+
+  .navbar .badge{
+    font-size: 10px;
+  }
+
+  /* keep navbar items aligned */
+  .navbar .collapse{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .navbar-nav{
+    flex-direction: row;
+  }
+
+}
